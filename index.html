@@ -3,24 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Expense Tracker</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>TWQ Wallet</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2em;
+      background: #f2f2f2;
+    }
+    h1 {
+      color: #333;
+    }
+    form input, form button {
+      margin: 0.5em;
+      padding: 0.5em;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1em;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 0.5em;
+      text-align: left;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Expense Tracker</h1>
-    <form id="expense-form">
-      <input type="text" id="expense-title" placeholder="Title" required />
-      <input type="number" id="expense-amount" placeholder="Amount" required />
-      <button type="submit">Add Expense</button>
-    </form>
+  <h1>TWQ Wallet 💸</h1>
 
-    <ul id="expense-list"></ul>
+  <form id="expense-form">
+    <input type="text" id="description" placeholder="شرح هزینه" required />
+    <input type="number" id="amount" placeholder="مبلغ (تومان)" required />
+    <button type="submit">افزودن</button>
+  </form>
 
-    <canvas id="expense-chart" width="400" height="200"></canvas>
-  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>شرح</th>
+        <th>مبلغ</th>
+        <th>عملیات</th>
+      </tr>
+    </thead>
+    <tbody id="expense-list">
+    </tbody>
+  </table>
 
-  <script src="chart.min.js"></script>
-  <script src="app.js"></script>
+  <script>
+    const form = document.getElementById('expense-form');
+    const list = document.getElementById('expense-list');
+
+    let expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+
+    function renderExpenses() {
+      list.innerHTML = '';
+      expenses.forEach((exp, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${exp.description}</td>
+          <td>${exp.amount.toLocaleString()} تومان</td>
+          <td><button onclick="deleteExpense(${index})">حذف</button></td>
+        `;
+        list.appendChild(row);
+      });
+    }
+
+    function deleteExpense(index) {
+      expenses.splice(index, 1);
+      localStorage.setItem('expenses', JSON.stringify(expenses));
+      renderExpenses();
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const desc = document.getElementById('description').value.trim();
+      const amount = parseInt(document.getElementById('amount').value);
+      if (desc && amount) {
+        expenses.push({ description: desc, amount });
+        localStorage.setItem('expenses', JSON.stringify(expenses));
+        form.reset();
+        renderExpenses();
+      }
+    });
+
+    renderExpenses();
+  </script>
 </body>
 </html>
