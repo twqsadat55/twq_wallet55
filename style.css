@@ -1,0 +1,40 @@
+
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background-color: #e6f0fa;
+  color: #003366;
+  margin: 0;
+  padding: 1rem;
+  direction: rtl;
+}
+.app {
+  max-width: 600px;
+  margin: auto;
+}
+form label {
+  display: block;
+  margin: 0.5rem 0;
+}
+input, select, button {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  font-size: 1rem;
+}
+button {
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  margin-top: 1rem;
+  border-radius: 8px;
+}
+#expense-list {
+  margin-top: 2rem;
+}
+.expense-card {
+  background-color: white;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
