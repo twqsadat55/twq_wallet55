@@ -1,19 +1,19 @@
-
 {
-  "name": "کیف من",
-  "short_name": "کیف من",
-  "start_url": "expenses_pro.html",
+  "name": "مدیریت هزینه‌ها",
+  "short_name": "هزینه‌ها",
+  "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#e6f0fa",
-  "theme_color": "#0077cc",
+  "background_color": "#ffffff",
+  "theme_color": "#007bff",
+  "orientation": "portrait",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "icon-512.png",
+      "src": "icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
